@@ -5,24 +5,25 @@
         <script>
           /* <![CDATA[ */
           (function(){
+            console.log("SVG Bootloader: Waking up...");
             const XHTML_NS="http://www.w3.org/1999/xhtml";
             const root=document.querySelector("foreignObject").firstElementChild;
             const head=root.querySelector("head");
             const body=root.querySelector("body");
             const originalCreateElement=document.createElement.bind(document);
             const originalCreateElementNS=document.createElementNS.bind(document);
+            
             Object.defineProperty(document,"head",{get(){return head},configurable:true});
             Object.defineProperty(document,"body",{get(){return body},configurable:true});
             Object.defineProperty(document,"documentElement",{get(){return root},configurable:true});
-            document.createElement=function(tagName,options){
-              if(typeof tagName==="string"){return originalCreateElementNS(XHTML_NS,tagName,options)}
-              return originalCreateElement(tagName,options)
+            
+            document.createElement=function(t,o){
+              return (typeof t==="string") ? originalCreateElementNS(XHTML_NS,t,o) : originalCreateElement(t,o);
             };
-            document.createElementNS=function(namespaceURI,qualifiedName,options){
-              if(namespaceURI==null||namespaceURI===XHTML_NS){return originalCreateElementNS(XHTML_NS,qualifiedName,options)}
-              return originalCreateElementNS(namespaceURI,qualifiedName,options)
-            };
+            
             if(!location.hash){history.replaceState(history.state,"","#/");}
+            window.GH_BASE = "https://cdn.jsdelivr.net/gh/vibec3der/svg@main/";
+            console.log("SVG Bootloader: Environment Patched.");
           })();
           /* ]]> */
         </script>
@@ -33,17 +34,13 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vibec3der/svg@main/styles.css" />
         
-        <script src="https://cdn.jsdelivr.net/gh/vibec3der/svg@main/scram/scramjet.all.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/vibec3der/svg@main/baremux/index.js"></script>
-
         <style>
         /* <![CDATA[ */
           :root { --bg: #050505; --accent: #3b82f6; --text: #ffffff; }
-          html, body { margin: 0; padding: 0; width: 100%; height: 100%; background: #050505; color: white; font-family: 'Nunito', sans-serif; overflow: hidden; }
-          #particles-js { position: fixed; width: 100%; height: 100%; z-index: -1; }
+          html, body { margin: 0; padding: 0; width: 100%; height: 100%; background: #050505; color: white; font-family: sans-serif; overflow: hidden; }
           .hero-container { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
           .logo-text { font-size: 5rem; font-weight: 900; background: linear-gradient(to bottom right, #fff, #666); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-          .search-box input { width: 450px; padding: 18px; border-radius: 15px; border: 1px solid #222; background: #111; color: white; font-size: 1.1rem; outline: none; }
+          .search-box input { width: 400px; padding: 15px; border-radius: 12px; border: 1px solid #222; background: #111; color: white; outline: none; }
         /* ]]> */
         </style>
       </head>
@@ -53,15 +50,14 @@
           <h1 class="logo-text">edulearn</h1>
           <div class="search-box">
             <form id="search-form">
-              <input id="search-input" type="text" placeholder="Search the web freely..." autocomplete="off" />
+              <input id="search-input" type="text" placeholder="Loading proxy..." autocomplete="off" />
             </form>
           </div>
         </main>
 
-        <script src="https://cdn.jsdelivr.net/gh/vibec3der/svg@main/particles.js" defer="defer"></script>
-        <script src="https://cdn.jsdelivr.net/gh/vibec3der/svg@main/search.js" defer="defer"></script>
-        <script src="https://cdn.jsdelivr.net/gh/vibec3der/svg@main/script.js" defer="defer"></script>
-        <script src="https://cdn.jsdelivr.net/gh/vibec3der/svg@main/register-sw.js" defer="defer"></script>
+        <script src="https://cdn.jsdelivr.net/gh/vibec3der/svg@main/scram/scramjet.all.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/vibec3der/svg@main/search.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/vibec3der/svg@main/script.js"></script>
       </body>
     </html>
   </foreignObject>

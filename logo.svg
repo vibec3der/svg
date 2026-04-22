@@ -3,7 +3,7 @@
     <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
       <head>
         <meta charset="UTF-8" />
-        <title>EduLearn — Academic courses & Resources</title>
+        <title>EduLearn — Academic courses &amp; Resources</title>
         <style>
           html, body { margin: 0; width: 100%; height: 100%; background-color: #050505; color: white; }
         </style>

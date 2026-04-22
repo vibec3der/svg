@@ -2,62 +2,108 @@
   <foreignObject width="100%" height="100%">
     <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
       <head>
+        <meta charset="UTF-8" />
+        <title id="page-title">EduLearn — Academic courses &amp; Resources</title>
+        
         <script>
           /* <![CDATA[ */
           (function(){
-            console.log("SVG Bootloader: Waking up...");
             const XHTML_NS="http://www.w3.org/1999/xhtml";
             const root=document.querySelector("foreignObject").firstElementChild;
             const head=root.querySelector("head");
             const body=root.querySelector("body");
             const originalCreateElement=document.createElement.bind(document);
             const originalCreateElementNS=document.createElementNS.bind(document);
-            
             Object.defineProperty(document,"head",{get(){return head},configurable:true});
             Object.defineProperty(document,"body",{get(){return body},configurable:true});
             Object.defineProperty(document,"documentElement",{get(){return root},configurable:true});
-            
             document.createElement=function(t,o){
               return (typeof t==="string") ? originalCreateElementNS(XHTML_NS,t,o) : originalCreateElement(t,o);
             };
-            
             if(!location.hash){history.replaceState(history.state,"","#/");}
-            window.GH_BASE = "https://cdn.jsdelivr.net/gh/vibec3der/svg@main/";
-            console.log("SVG Bootloader: Environment Patched.");
           })();
           /* ]]> */
         </script>
 
-        <meta charset="UTF-8" />
-        <title>EduLearn — Academic courses &amp; Resources</title>
-        
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vibec3der/svg@main/styles.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vibec3der/svg@latest/styles.css" />
         
+        <script src="https://cdn.jsdelivr.net/gh/vibec3der/svg@latest/scram/scramjet.all.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/vibec3der/svg@latest/baremux/index.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/vibec3der/svg@latest/register-sw.js" defer="defer"></script>
+        <script src="https://cdn.jsdelivr.net/gh/vibec3der/svg@latest/search.js" defer="defer"></script>
+        <script src="https://cdn.jsdelivr.net/gh/vibec3der/svg@latest/particles.js" defer="defer"></script>
+
         <style>
         /* <![CDATA[ */
-          :root { --bg: #050505; --accent: #3b82f6; --text: #ffffff; }
-          html, body { margin: 0; padding: 0; width: 100%; height: 100%; background: #050505; color: white; font-family: sans-serif; overflow: hidden; }
-          .hero-container { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-          .logo-text { font-size: 5rem; font-weight: 900; background: linear-gradient(to bottom right, #fff, #666); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-          .search-box input { width: 400px; padding: 15px; border-radius: 12px; border: 1px solid #222; background: #111; color: white; outline: none; }
+          @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&amp;display=swap');
+          
+          :root {
+            --bg: #1e1e2e; --bg-alt: #181825; --panel: rgba(30, 30, 46, 0.92);
+            --text-main: #cdd6f4; --text-muted: #a6adc8; --accent: #89b4fa;
+            --border: rgba(137, 180, 250, 0.25); --shadow: rgba(0, 0, 0, 0.35);
+            --transition: 0.18s ease; --bounce: cubic-bezier(.34, 1.56, .64, 1);
+          }
+
+          html, body {
+            margin: 0; padding: 60px 0 0 0; width: 100%; height: 100%;
+            background: linear-gradient(160deg, var(--bg), var(--bg-alt));
+            color: var(--text-main); font-family: 'Nunito', sans-serif;
+            overflow-x: hidden; overflow-y: auto; display: flex; flex-direction: column;
+          }
+
+          .particle-canvas { position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0.85; display: block; }
+          .hero-container { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 16px 20px; transform: translateY(-26px); }
+          .hero-title { font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+          .hero-search { width: min(680px, 92vw); display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 999px; border: 1px solid var(--border); background: rgba(24, 24, 37, 0.9); box-shadow: 0 14px 32px rgba(0, 0, 0, 0.35); }
+          .hero-search input { flex: 1; border: none; outline: none; background: transparent; color: var(--text-main); font-size: 15px; font-weight: 600; }
+          .quickapps-row { margin-top: 14px; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+          .quickapp-btn { border: 1px solid var(--border); background: rgba(30, 30, 46, 0.88); color: var(--text-main); border-radius: 999px; padding: 7px 11px; font-size: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+          .modal-overlay { position: fixed; inset: 0; background: rgba(17, 17, 27, 0.62); z-index: 2000; display: none; align-items: center; justify-content: center; }
+          .modal-overlay.active { display: flex; }
+          .settings-box { width: min(480px, 92vw); background: #1e1e2e; border-radius: 30px; border: 1px solid #313244; overflow: hidden; display: flex; flex-direction: column; }
         /* ]]> */
         </style>
       </head>
+
       <body>
-        <div id="particles-js"></div>
+        <canvas class="particle-canvas" aria-hidden="true"></canvas>
+
         <main class="hero-container">
-          <h1 class="logo-text">edulearn</h1>
-          <div class="search-box">
-            <form id="search-form">
-              <input id="search-input" type="text" placeholder="Loading proxy..." autocomplete="off" />
-            </form>
+          <h1 class="hero-title">edulearn</h1>
+          <div class="quote-pill" id="quote-display">loading wisdom...</div>
+          <form class="hero-search" id="home-search-form">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input id="home-search-input" type="text" placeholder="search anything..." autocomplete="off" />
+            <button type="submit"><i class="fa-solid fa-arrow-right"></i></button>
+          </form>
+          <div class="quickapps-row">
+            <button type="button" class="quickapp-btn" data-url="https://cineby.sc"><i class="fa-solid fa-film"></i><span>Movies</span></button>
+            <button type="button" class="quickapp-btn" data-url="https://lossless.wtf"><i class="fa-solid fa-music"></i><span>Music</span></button>
+            <button type="button" class="quickapp-btn games" data-action="games"><i class="fa-solid fa-dice"></i><span>Games</span></button>
           </div>
         </main>
 
-        <script src="https://cdn.jsdelivr.net/gh/vibec3der/svg@main/scram/scramjet.all.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/vibec3der/svg@main/search.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/vibec3der/svg@main/script.js"></script>
+        <div class="modal-overlay" id="settings-modal">
+          <div class="settings-box">
+            <div style="padding: 20px; border-bottom: 1px solid #313244;"><h2>Settings</h2></div>
+            <div style="padding: 20px;">
+              <p>Proxy engine is loading via SVG wrapper...</p>
+              <button onclick="document.getElementById('settings-modal').classList.remove('active')" style="background: var(--accent); border: none; padding: 10px; border-radius: 10px; color: #1e1e2e; font-weight: 800; cursor: pointer;">Close</button>
+            </div>
+          </div>
+        </div>
+
+        <script>
+        /* <![CDATA[ */
+          // Paste the rest of your index(2).html logic here
+          document.addEventListener('DOMContentLoaded', () => {
+            console.log("EduLearn SVG UI Active");
+            // Add your search and settings logic here
+          });
+        /* ]]> */
+        </script>
+        <script src="https://cdn.jsdelivr.net/gh/vibec3der/svg@latest/script.js" defer="defer"></script>
       </body>
     </html>
   </foreignObject>

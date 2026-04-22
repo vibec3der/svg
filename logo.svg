@@ -1,145 +1,40 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
   <foreignObject width="100%" height="100%">
-    <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+    <html xmlns="http://www.w3.org/1999/xhtml">
       <head>
-        <meta charset="UTF-8" />
-        <title>EduLearn — Academic courses &amp; Resources</title>
-        
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vibec3der/svg@main/styles.css" />
-        
-        <script src="https://cdn.jsdelivr.net/gh/vibec3der/svg@main/scram/scramjet.all.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/vibec3der/svg@main/baremux/index.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/vibec3der/svg@main/register-sw.js" defer="defer"></script>
-        <script src="https://cdn.jsdelivr.net/gh/vibec3der/svg@main/search.js" defer="defer"></script>
-        <script src="https://cdn.jsdelivr.net/gh/vibec3der/svg@main/particles.js" defer="defer"></script>
-
+        <title>EduLearn</title>
         <style>
         /* <![CDATA[ */
-          @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
-          
-          :root {
-            --bg: #050505;
-            --accent: #3b82f6;
-            --text: #ffffff;
-            --text-dim: #9ca3af;
-            --card-bg: #111111;
-          }
-
-          html, body {
-            margin: 0; padding: 0; width: 100%; height: 100%;
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Nunito', sans-serif;
-            overflow-x: hidden;
-          }
-
-          #particles-js {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-          }
-
-          .hero-container {
-            min-height: 100vh; display: flex; flex-direction: column;
-            align-items: center; justify-content: center; padding: 20px;
-          }
-
-          .logo-text {
-            font-size: 5rem; font-weight: 900; margin: 0 0 2rem 0;
-            background: linear-gradient(to bottom right, #fff, #666);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -2px;
-          }
-
-          .search-box {
-            width: 100%; max-width: 600px; position: relative;
-          }
-
-          .search-box i {
-            position: absolute; left: 22px; top: 50%; transform: translateY(-50%);
-            color: var(--text-dim); font-size: 1.1rem; z-index: 10;
-          }
-
-          .search-box input {
-            width: 100%; padding: 20px 25px 20px 60px;
-            background: var(--card-bg); border: 1px solid #222;
-            border-radius: 18px; color: white; font-size: 1.15rem;
-            outline: none; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-sizing: border-box;
-          }
-
-          .search-box input:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
-            background: #151515;
-          }
-
-          .settings-btn {
-            position: fixed; top: 30px; right: 30px;
-            width: 45px; height: 45px; display: flex;
+          :root { --bg: #050505; --accent: #3b82f6; --text: #ffffff; }
+          html, body { 
+            margin: 0; padding: 0; width: 100%; height: 100%; 
+            background-color: #050505; color: white; 
+            font-family: sans-serif; display: flex; 
             align-items: center; justify-content: center;
-            background: var(--card-bg); border: 1px solid #222;
-            border-radius: 12px; cursor: pointer; color: var(--text-dim);
-            transition: all 0.2s ease; z-index: 50;
           }
-
-          .settings-btn:hover { color: white; border-color: #333; transform: rotate(30deg); }
+          .logo-text {
+            font-size: 5rem; font-weight: 900;
+            background: linear-gradient(to bottom right, #fff, #666);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+          }
+          .search-box input {
+            width: 400px; padding: 15px; border-radius: 10px;
+            border: 1px solid #333; background: #111; color: white;
+          }
         /* ]]> */
         </style>
       </head>
-
       <body>
-        <div id="particles-js"></div>
-
-        <div class="settings-btn" onclick="document.getElementById('settings-modal').style.display='flex'">
-          <i class="fa-solid fa-gear"></i>
-        </div>
-
-        <main class="hero-container">
+        <div style="text-align: center;">
           <h1 class="logo-text">edulearn</h1>
-          
           <div class="search-box">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <form id="search-form" onsubmit="return false;">
-              <input id="search-input" type="text" placeholder="Search the web freely..." autocomplete="off" />
-            </form>
+            <input type="text" placeholder="If you see this, it works!" />
           </div>
-        </main>
-
-        <div id="settings-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; align-items: center; justify-content: center;">
-          <div style="background: #111; padding: 40px; border-radius: 24px; border: 1px solid #222; width: 90%; max-width: 500px;">
-            <h2 style="margin-top: 0;">Settings</h2>
-            <p style="color: var(--text-dim);">Customization and proxy settings.</p>
-            <hr style="border: 0; border-top: 1px solid #222; margin: 20px 0;" />
-            <button style="background: var(--accent); color: white; border: none; padding: 12px 24px; border-radius: 10px; cursor: pointer; font-weight: 700;" onclick="document.getElementById('settings-modal').style.display='none'">Save &amp; Close</button>
-          </div>
+          <p style="margin-top: 20px; color: #666;">SVG Container Active</p>
         </div>
 
-        <script>
-        /* <![CDATA[ */
-          // Logic ported directly from your index(2).html
-          document.addEventListener('DOMContentLoaded', () => {
-            const searchInput = document.getElementById('search-input');
-            const searchForm = document.getElementById('search-form');
-
-            if (searchForm) {
-              searchForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const query = searchInput.value.trim();
-                if (query) {
-                  // This calls your search.js logic
-                  if (window.handleSearch) {
-                    window.handleSearch(query);
-                  } else {
-                    console.error("search.js not loaded yet");
-                  }
-                }
-              });
-            }
-          });
-        /* ]]> */
-        </script>
-        <script src="https://cdn.jsdelivr.net/gh/vibec3der/svg@main/script.js" defer="defer"></script>
+        <script src="https://cdn.jsdelivr.net/gh/vibec3der/svg@main/scram/scramjet.all.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/vibec3der/svg@main/search.js"></script>
       </body>
     </html>
   </foreignObject>

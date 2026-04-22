@@ -1,20 +1,39 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
   <foreignObject width="100%" height="100%">
-    <html xmlns="http://www.w3.org/1999/xhtml">
+    
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
       <head>
+        <!-- IMPORTANT: makes relative paths work -->
         <base href="/" />
+
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>EduLearn</title>
+
         <style>
           html, body {
             margin: 0;
+            padding: 0;
             width: 100%;
             height: 100%;
             overflow: hidden;
+            background: #000;
+          }
+
+          iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
           }
         </style>
       </head>
+
       <body>
-        <iframe src="/" style="width:100%;height:100%;border:none;"></iframe>
+        <!-- Your entire site loads here -->
+        <iframe src="/"></iframe>
       </body>
     </html>
+
   </foreignObject>
 </svg>
